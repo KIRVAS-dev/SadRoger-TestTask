@@ -1,5 +1,6 @@
 using ContentValidation;
 using Core.Gameplay.GameFlow;
+using Core.Gameplay.LocationBoundary;
 using Core.Gameplay.Ship;
 using Core.Gameplay.Wind;
 using Core.Input;
@@ -9,11 +10,14 @@ using Core.Lifecycle;
 using Core.Loop;
 using Infrastructure.ExtendedExceptions;
 using Input;
+using UI.BoundaryWarning;
+using UI.LocationExitNotice;
 using UI.WindHud;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using ViewComponents.Audio;
+using ViewComponents.LocationBoundary;
 using ViewComponents.Ship;
 using ViewComponents.Wind;
 
@@ -22,6 +26,7 @@ namespace Core.Bootstrap
     internal sealed class CoreScope : LifetimeScope
     {
         [SerializeField] private ShipConfig _shipConfig;
+        [SerializeField] private LocationBoundaryConfig _locationBoundaryConfig;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -30,6 +35,7 @@ namespace Core.Bootstrap
             RegisterAudioListenerFollow(builder);
             RegisterShip(builder);
             RegisterWind(builder);
+            RegisterLocationBoundary(builder);
         }
 
         private static void RegisterEntryPoint(IContainerBuilder builder)
@@ -76,6 +82,26 @@ namespace Core.Bootstrap
 
             builder.RegisterComponentInHierarchy<ShipView>().As<IShipView>();
             builder.Register<ShipPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
+        }
+
+        private void RegisterLocationBoundary(IContainerBuilder builder)
+        {
+            Guard.AgainstNull(_locationBoundaryConfig, () => Missing(nameof(_locationBoundaryConfig)));
+
+            builder.RegisterInstance(_locationBoundaryConfig).As<ILocationBoundarySettings>().As<IValidatable>();
+            builder.Register<LocationBoundaryModel>(Lifetime.Singleton).AsSelf().As<IReadOnlyLocationBoundaryModel>();
+
+            builder.Register<LocationBoundaryService>(Lifetime.Singleton).As<ILocationBoundaryEvents>().As<IGameplayTickable>();
+
+            builder.Register<LocationExitLogger>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
+            builder.RegisterComponentInHierarchy<LocationBoundaryRing>().As<IValidatable>().As<IWarmupLifecycle>();
+
+            builder.RegisterComponentInHierarchy<BoundaryWarningView>().As<IBoundaryWarningView>().As<IValidatable>();
+            builder.Register<BoundaryWarningPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
+
+            builder.RegisterComponentInHierarchy<LocationExitNoticeView>().As<ILocationExitNoticeView>().As<IValidatable>();
+
+            builder.Register<LocationExitNoticePresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
         }
 
         private ExtendedException Missing(string fieldName)
