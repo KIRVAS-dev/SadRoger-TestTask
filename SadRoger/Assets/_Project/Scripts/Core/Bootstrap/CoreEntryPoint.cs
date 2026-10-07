@@ -27,6 +27,7 @@ namespace Core.Bootstrap
         {
             _scopeLifecycle.Start();
             _gameFlowService.PrepareGame();
+            _gameFlowService.StartGame();
             _loadingService.Complete();
         }
 
