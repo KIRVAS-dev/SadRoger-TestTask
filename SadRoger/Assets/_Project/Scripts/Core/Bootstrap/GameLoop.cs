@@ -9,16 +9,11 @@ namespace Core.Bootstrap
     {
         private readonly IReadOnlyList<IInputTickable> _inputTickables;
         private readonly IReadOnlyList<IGameplayTickable> _gameplayTickables;
-        private readonly IReadOnlyList<IPresentationTickable> _presentationTickables;
 
-        public GameLoop(
-            IReadOnlyList<IInputTickable> inputTickables,
-            IReadOnlyList<IGameplayTickable> gameplayTickables,
-            IReadOnlyList<IPresentationTickable> presentationTickables)
+        public GameLoop(IReadOnlyList<IInputTickable> inputTickables, IReadOnlyList<IGameplayTickable> gameplayTickables)
         {
             _inputTickables = inputTickables;
             _gameplayTickables = gameplayTickables;
-            _presentationTickables = presentationTickables;
         }
 
         void ITickable.Tick()
@@ -27,7 +22,6 @@ namespace Core.Bootstrap
 
             UpdateInput();
             UpdateGameplay(deltaTime);
-            UpdatePresentation();
         }
 
         private void UpdateInput()
@@ -43,14 +37,6 @@ namespace Core.Bootstrap
             foreach (IGameplayTickable gameplayTickable in _gameplayTickables)
             {
                 gameplayTickable.Tick(deltaTime);
-            }
-        }
-
-        private void UpdatePresentation()
-        {
-            foreach (IPresentationTickable presentationTickable in _presentationTickables)
-            {
-                presentationTickable.Tick();
             }
         }
     }

@@ -23,10 +23,5 @@ namespace Core.Gameplay.GameFlow
         {
             _gameStateMachine.EnterState(result);
         }
-
-        void IGameFlowService.RestartGame()
-        {
-            _gameStateMachine.EnterState(GameState.Ready);
-        }
     }
 }

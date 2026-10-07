@@ -5,6 +5,5 @@ namespace Core.Gameplay.GameFlow
         void PrepareGame();
         void StartGame();
         void FinishGame(GameState result);
-        void RestartGame();
     }
 }

@@ -6,8 +6,6 @@ namespace Core.Bootstrap.Scene
 {
     public interface ISceneLoader
     {
-        void Load(string sceneName, LoadSceneMode loadSceneMode);
-
         UniTask LoadAsync(
             string sceneName,
             LoadSceneMode loadSceneMode,
