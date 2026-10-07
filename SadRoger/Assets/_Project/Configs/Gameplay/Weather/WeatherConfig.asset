@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c8a9e394db9254aadaf8d60f3ac8a2, type: 3}
+  m_Name: WeatherConfig
+  m_EditorClassIdentifier: ViewComponents::ViewComponents.Weather.WeatherConfig
+  _clear: {fileID: 11400000, guid: fa5438f937e6962479968750eba47be3, type: 2}
+  _rain: {fileID: 11400000, guid: 1adf58c3b5ea9424c8517485ec8fac78, type: 2}
+  _storm: {fileID: 11400000, guid: 6aabf6fa95e81574d9b77c03dc2db46c, type: 2}
+  _fog: {fileID: 11400000, guid: 1d6bf87ce8b60ce46b2a2b77c6704ce3, type: 2}
