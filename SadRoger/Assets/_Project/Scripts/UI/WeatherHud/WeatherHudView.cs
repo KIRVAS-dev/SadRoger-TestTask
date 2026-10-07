@@ -1,6 +1,7 @@
 using System;
 using ContentValidation;
 using Core.Gameplay.Weather;
+using Core.Lifecycle;
 using Infrastructure.ExtendedExceptions;
 using TMPro;
 using UnityEngine;
@@ -11,7 +12,8 @@ namespace UI.WeatherHud
     public sealed class WeatherHudView
         : MonoBehaviour,
           IWeatherHudView,
-          IValidatable
+          IValidatable,
+          IWarmupLifecycle
     {
         private const string PercentFormat = "{0}%";
         private const float PercentFactor = 100f;
@@ -25,14 +27,6 @@ namespace UI.WeatherHud
         [SerializeField] private Color _inactiveColor = Color.gray;
 
         public event Action<WeatherState> StateClicked;
-
-        private void Awake()
-        {
-            _clearButton.onClick.AddListener(OnClearClicked);
-            _rainButton.onClick.AddListener(OnRainClicked);
-            _stormButton.onClick.AddListener(OnStormClicked);
-            _fogButton.onClick.AddListener(OnFogClicked);
-        }
 
         private void OnDestroy()
         {
@@ -53,6 +47,14 @@ namespace UI.WeatherHud
             return;
 
             ExtendedException Missing(string fieldName) => new MissingWeatherHudFieldException(fieldName, gameObject.name);
+        }
+
+        void IWarmupLifecycle.Warmup()
+        {
+            _clearButton.onClick.AddListener(OnClearClicked);
+            _rainButton.onClick.AddListener(OnRainClicked);
+            _stormButton.onClick.AddListener(OnStormClicked);
+            _fogButton.onClick.AddListener(OnFogClicked);
         }
 
         void IWeatherHudView.SetActiveState(WeatherState state)

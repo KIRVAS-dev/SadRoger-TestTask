@@ -1,5 +1,6 @@
 using System;
 using ContentValidation;
+using Core.Lifecycle;
 using Infrastructure.ExtendedExceptions;
 using TMPro;
 using UnityEngine;
@@ -10,12 +11,14 @@ namespace UI.WindHud
     public sealed class WindHudView
         : MonoBehaviour,
           IWindHudView,
-          IValidatable
+          IValidatable,
+          IWarmupLifecycle
     {
         private const string DegreesFormat = "{0}°";
         private const string PercentFormat = "{0}%";
         private const float PercentFactor = 100f;
         private const float HalfTurn = 180f;
+        private const float FullTurn = 360f;
 
         [SerializeField] private TextMeshProUGUI _directionText;
         [SerializeField] private TextMeshProUGUI _strengthText;
@@ -27,12 +30,6 @@ namespace UI.WindHud
 
         public event Action<float> DirectionChanged;
         public event Action<float> BaseStrengthChanged;
-
-        private void Awake()
-        {
-            _directionSlider.onValueChanged.AddListener(OnDirectionSliderChanged);
-            _baseStrengthSlider.onValueChanged.AddListener(OnBaseStrengthSliderChanged);
-        }
 
         private void OnDestroy()
         {
@@ -54,9 +51,15 @@ namespace UI.WindHud
             ExtendedException Missing(string fieldName) => new MissingWindHudFieldException(fieldName, gameObject.name);
         }
 
+        void IWarmupLifecycle.Warmup()
+        {
+            _directionSlider.onValueChanged.AddListener(OnDirectionSliderChanged);
+            _baseStrengthSlider.onValueChanged.AddListener(OnBaseStrengthSliderChanged);
+        }
+
         void IWindHudView.SetDirection(float direction)
         {
-            _directionText.SetText(DegreesFormat, Mathf.Round(direction));
+            _directionText.SetText(DegreesFormat, Mathf.Round(direction) % FullTurn);
             _directionSlider.SetValueWithoutNotify(direction);
         }
 

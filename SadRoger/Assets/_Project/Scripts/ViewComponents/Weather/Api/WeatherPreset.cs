@@ -11,7 +11,9 @@ namespace ViewComponents.Weather
           IWeatherPreset,
           IValidatable
     {
-        [Range(0f, 1f)]
+        private const float MaxIntensity = 1f;
+
+        [Range(0f, MaxIntensity)]
         [SerializeField] private float _intensity;
         [Tooltip("Exponential squared fog density, 0 disables fog")]
         [SerializeField] private float _fogDensity;
@@ -25,6 +27,7 @@ namespace ViewComponents.Weather
         public void Validate()
         {
             Guard.AgainstNegative(_intensity, () => Invalid(nameof(_intensity), _intensity));
+            Guard.AgainstGreaterThan(_intensity, MaxIntensity, () => Invalid(nameof(_intensity), _intensity));
             Guard.AgainstNegative(_fogDensity, () => Invalid(nameof(_fogDensity), _fogDensity));
             Guard.AgainstNegative(_windMultiplier, () => Invalid(nameof(_windMultiplier), _windMultiplier));
 

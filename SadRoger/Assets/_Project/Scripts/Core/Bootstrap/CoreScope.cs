@@ -72,7 +72,7 @@ namespace Core.Bootstrap
             builder.Register<RelativeWindAngle>(Lifetime.Singleton).As<IRelativeWindAngle>();
             builder.Register<WindInputHandler>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
 
-            builder.RegisterComponentInHierarchy<WindHudView>().As<IWindHudView>().As<IValidatable>();
+            builder.RegisterComponentInHierarchy<WindHudView>().As<IWindHudView>().As<IValidatable>().As<IWarmupLifecycle>();
             builder.Register<WindHudPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
         }
 
@@ -103,7 +103,12 @@ namespace Core.Bootstrap
             builder.RegisterComponentInHierarchy<WeatherFogView>().As<IWeatherFogView>();
             builder.Register<WeatherFogPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
 
-            builder.RegisterComponentInHierarchy<WeatherHudView>().As<IWeatherHudView>().As<IValidatable>();
+            builder
+               .RegisterComponentInHierarchy<WeatherHudView>()
+               .As<IWeatherHudView>()
+               .As<IValidatable>()
+               .As<IWarmupLifecycle>();
+
             builder.Register<WeatherHudPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
         }
 
@@ -123,7 +128,6 @@ namespace Core.Bootstrap
             builder.Register<BoundaryWarningPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
 
             builder.RegisterComponentInHierarchy<LocationExitNoticeView>().As<ILocationExitNoticeView>().As<IValidatable>();
-
             builder.Register<LocationExitNoticePresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
         }
 
