@@ -13,6 +13,7 @@ namespace Tests.EditMode
         private WindModel _windModel;
         private ShipModel _shipModel;
         private WindService _windService;
+        private RelativeWindAngle _relativeWindAngle;
 
         [SetUp]
         public void SetUp()
@@ -20,6 +21,13 @@ namespace Tests.EditMode
             _windModel = new WindModel();
             _shipModel = new ShipModel();
             _windService = new WindService(_windModel);
+            _relativeWindAngle = new RelativeWindAngle(_windModel, _shipModel);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            ((IDisposable)_relativeWindAngle).Dispose();
         }
 
         [Test]
@@ -61,14 +69,10 @@ namespace Tests.EditMode
             float shipHeading,
             float expected)
         {
-            RelativeWindAngle relativeWindAngle = new RelativeWindAngle(_windModel, _shipModel);
-
             ((IWindService)_windService).SetDirection(windDirection);
             _shipModel.Heading.Value = shipHeading;
 
-            Assert.That(((IRelativeWindAngle)relativeWindAngle).Angle.CurrentValue, Is.EqualTo(expected).Within(Tolerance));
-
-            ((IDisposable)relativeWindAngle).Dispose();
+            Assert.That(((IRelativeWindAngle)_relativeWindAngle).Angle.CurrentValue, Is.EqualTo(expected).Within(Tolerance));
         }
     }
 }
