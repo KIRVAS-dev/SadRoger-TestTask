@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ViewComponents.Weather
 {
     [CreateAssetMenu(menuName = "Configs/Weather Preset")]
-    public sealed class WeatherPreset
+    internal sealed class WeatherPreset
         : ScriptableObject,
           IWeatherPreset,
           IValidatable
