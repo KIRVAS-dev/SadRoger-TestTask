@@ -13,6 +13,7 @@ namespace ViewComponents.Ship
     {
         [Tooltip("Units per second at full throttle")]
         [SerializeField] private float _moveSpeed = 8f;
+
         [Tooltip("Degrees per second at full steering")]
         [SerializeField] private float _turnSpeed = 90f;
 

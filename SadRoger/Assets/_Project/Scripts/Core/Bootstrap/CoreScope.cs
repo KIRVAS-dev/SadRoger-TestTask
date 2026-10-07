@@ -1,5 +1,4 @@
 using ContentValidation;
-using Core.Gameplay.GameFlow;
 using Core.Gameplay.LocationBoundary;
 using Core.Gameplay.Ship;
 using Core.Gameplay.Weather;
@@ -19,7 +18,6 @@ using UI.WindHud;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using ViewComponents.Audio;
 using ViewComponents.LocationBoundary;
 using ViewComponents.Ship;
 using ViewComponents.Weather;
@@ -36,8 +34,6 @@ namespace Core.Bootstrap
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterEntryPoint(builder);
-            RegisterGameFlow(builder);
-            RegisterAudioListenerFollow(builder);
             RegisterShip(builder);
             RegisterWind(builder);
             RegisterWeather(builder);
@@ -49,31 +45,6 @@ namespace Core.Bootstrap
             builder.RegisterEntryPoint<CoreEntryPoint>();
             builder.RegisterEntryPoint<GameLoop>();
             builder.Register<ScopeLifecycle>(Lifetime.Singleton);
-        }
-
-        private static void RegisterGameFlow(IContainerBuilder builder)
-        {
-            builder.Register<GameStateModel>(Lifetime.Singleton).AsSelf().As<IReadOnlyGameStateModel>();
-            builder.Register<GameplayInputBlock>(Lifetime.Singleton).As<IGameplayInputBlock>();
-            builder.Register<GameStateMachine>(Lifetime.Singleton).As<IGameStateMachine>();
-            builder.Register<GameFlowService>(Lifetime.Singleton).As<IGameFlowService>();
-        }
-
-        private static void RegisterAudioListenerFollow(IContainerBuilder builder)
-        {
-            builder.RegisterComponentInHierarchy<AudioListenerCameraFollower>();
-        }
-
-        private static void RegisterWind(IContainerBuilder builder)
-        {
-            builder.RegisterComponentInHierarchy<WindInspectorInput>().As<IWindInput>().As<IInputTickable>();
-            builder.Register<WindModel>(Lifetime.Singleton).AsSelf().As<IReadOnlyWindModel>();
-            builder.Register<WindService>(Lifetime.Singleton).As<IWindService>().As<IWindStrengthMultiplier>();
-            builder.Register<RelativeWindAngle>(Lifetime.Singleton).As<IRelativeWindAngle>();
-            builder.Register<WindInputHandler>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
-
-            builder.RegisterComponentInHierarchy<WindHudView>().As<IWindHudView>().As<IValidatable>().As<IWarmupLifecycle>();
-            builder.Register<WindHudPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
         }
 
         private void RegisterShip(IContainerBuilder builder)
@@ -90,6 +61,18 @@ namespace Core.Bootstrap
             builder.Register<ShipPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
         }
 
+        private static void RegisterWind(IContainerBuilder builder)
+        {
+            builder.RegisterComponentInHierarchy<WindInspectorInput>().As<IWindInput>().As<IInputTickable>();
+            builder.Register<WindModel>(Lifetime.Singleton).AsSelf().As<IReadOnlyWindModel>();
+            builder.Register<WindService>(Lifetime.Singleton).As<IWindService>().As<IWindStrengthMultiplier>();
+            builder.Register<RelativeWindAngle>(Lifetime.Singleton).As<IRelativeWindAngle>();
+            builder.Register<WindInputHandler>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
+
+            builder.RegisterComponentInHierarchy<WindHudView>().As<IWindHudView>().As<IValidatable>().As<IPreparationLifecycle>();
+            builder.Register<WindHudPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
+        }
+
         private void RegisterWeather(IContainerBuilder builder)
         {
             Guard.AgainstNull(_weatherConfig, () => Missing(nameof(_weatherConfig)));
@@ -97,7 +80,7 @@ namespace Core.Bootstrap
             builder.RegisterInstance(_weatherConfig).As<IWeatherSettings>().As<IValidatable>();
             builder.RegisterComponentInHierarchy<WeatherInspectorInput>().As<IWeatherInput>().As<IInputTickable>();
             builder.Register<WeatherModel>(Lifetime.Singleton).AsSelf().As<IReadOnlyWeatherModel>();
-            builder.Register<WeatherService>(Lifetime.Singleton).As<IWeatherService>().As<IWarmupLifecycle>();
+            builder.Register<WeatherService>(Lifetime.Singleton).As<IWeatherService>().As<IPreparationLifecycle>();
             builder.Register<WeatherInputHandler>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
 
             builder.RegisterComponentInHierarchy<WeatherFogView>().As<IWeatherFogView>();
@@ -107,7 +90,7 @@ namespace Core.Bootstrap
                .RegisterComponentInHierarchy<WeatherHudView>()
                .As<IWeatherHudView>()
                .As<IValidatable>()
-               .As<IWarmupLifecycle>();
+               .As<IPreparationLifecycle>();
 
             builder.Register<WeatherHudPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
         }
@@ -117,12 +100,13 @@ namespace Core.Bootstrap
             Guard.AgainstNull(_locationBoundaryConfig, () => Missing(nameof(_locationBoundaryConfig)));
 
             builder.RegisterInstance(_locationBoundaryConfig).As<ILocationBoundarySettings>().As<IValidatable>();
+            builder.RegisterComponentInHierarchy<LocationBoundaryCenter>().As<ILocationBoundaryCenterProvider>();
             builder.Register<LocationBoundaryModel>(Lifetime.Singleton).AsSelf().As<IReadOnlyLocationBoundaryModel>();
 
             builder.Register<LocationBoundaryService>(Lifetime.Singleton).As<ILocationBoundaryEvents>().As<IGameplayTickable>();
 
             builder.Register<LocationExitLogger>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
-            builder.RegisterComponentInHierarchy<LocationBoundaryRing>().As<IValidatable>().As<IWarmupLifecycle>();
+            builder.RegisterComponentInHierarchy<LocationBoundaryRing>().As<IValidatable>().As<IPreparationLifecycle>();
 
             builder.RegisterComponentInHierarchy<BoundaryWarningView>().As<IBoundaryWarningView>().As<IValidatable>();
             builder.Register<BoundaryWarningPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();

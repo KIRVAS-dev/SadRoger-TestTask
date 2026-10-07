@@ -24,7 +24,7 @@ namespace Tests.EditMode
         {
             _shipModel = new ShipModel();
             _model = new LocationBoundaryModel();
-            _service = new LocationBoundaryService(new FakeSettings(), _shipModel, _model);
+            _service = new LocationBoundaryService(new FakeSettings(), new FakeCenterProvider(), _shipModel, _model);
             _exitCount = 0;
             _service.LocationExited += () => _exitCount++;
         }
@@ -138,11 +138,14 @@ namespace Tests.EditMode
 
         private sealed class FakeSettings : ILocationBoundarySettings
         {
-            public float CenterX => 0f;
-            public float CenterZ => 0f;
             public float Radius => BoundaryRadius;
             public float WarningDelay => BoundaryWarningDelay;
             public float ExitCountdown => BoundaryExitCountdown;
+        }
+
+        private sealed class FakeCenterProvider : ILocationBoundaryCenterProvider
+        {
+            public SeaPosition Center => new SeaPosition(0f, 0f);
         }
     }
 }

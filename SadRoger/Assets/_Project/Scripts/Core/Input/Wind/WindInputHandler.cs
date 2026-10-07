@@ -18,6 +18,7 @@ namespace Core.Input.Wind
         {
             ApplyDirection();
             ApplyStrength();
+
             _input.DirectionChanged += ApplyDirection;
             _input.StrengthChanged += ApplyStrength;
         }

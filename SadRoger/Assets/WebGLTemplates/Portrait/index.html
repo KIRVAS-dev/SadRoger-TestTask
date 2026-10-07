@@ -168,7 +168,7 @@
     document.documentElement.lang = PlayLabels[language] ? language : "en";
     playButton.textContent = PlayLabels[language] || PlayLabels.en;
 
-    // The game starts on click so the user gesture unlocks audio (FMOD / WebAudio).
+    // The game starts on click so the user gesture unlocks audio (WebAudio).
     playButton.addEventListener("click", function () {
         playButton.style.display = "none";
         loading.style.display = "block";

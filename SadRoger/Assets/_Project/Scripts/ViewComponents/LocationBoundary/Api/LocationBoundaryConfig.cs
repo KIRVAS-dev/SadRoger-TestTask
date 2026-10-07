@@ -11,16 +11,14 @@ namespace ViewComponents.LocationBoundary
           ILocationBoundarySettings,
           IValidatable
     {
-        [SerializeField] private float _centerX;
-        [SerializeField] private float _centerZ;
         [SerializeField] private float _radius = 50f;
+
         [Tooltip("Seconds outside the boundary before the warning appears")]
         [SerializeField] private float _warningDelay = 1f;
+
         [Tooltip("Countdown seconds after the warning before the location is exited")]
         [SerializeField] private float _exitCountdown = 5f;
 
-        float ILocationBoundarySettings.CenterX => _centerX;
-        float ILocationBoundarySettings.CenterZ => _centerZ;
         float ILocationBoundarySettings.Radius => _radius;
         float ILocationBoundarySettings.WarningDelay => _warningDelay;
         float ILocationBoundarySettings.ExitCountdown => _exitCountdown;

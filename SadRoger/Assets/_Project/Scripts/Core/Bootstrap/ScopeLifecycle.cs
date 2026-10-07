@@ -8,23 +8,23 @@ namespace Core.Bootstrap
     public sealed class ScopeLifecycle
     {
         private readonly IReadOnlyList<IValidatable> _validatables;
-        private readonly IReadOnlyList<IWarmupLifecycle> _warmupLifecycles;
+        private readonly IReadOnlyList<IPreparationLifecycle> _preparationLifecycles;
         private readonly IReadOnlyList<ISubscriptionLifecycle> _subscriptionLifecycles;
 
         public ScopeLifecycle(
             ContainerLocal<IReadOnlyList<IValidatable>> validatables,
-            ContainerLocal<IReadOnlyList<IWarmupLifecycle>> warmupLifecycles,
+            ContainerLocal<IReadOnlyList<IPreparationLifecycle>> preparationLifecycles,
             ContainerLocal<IReadOnlyList<ISubscriptionLifecycle>> subscriptionLifecycles)
         {
             _validatables = validatables.Value;
-            _warmupLifecycles = warmupLifecycles.Value;
+            _preparationLifecycles = preparationLifecycles.Value;
             _subscriptionLifecycles = subscriptionLifecycles.Value;
         }
 
         public void Start()
         {
             Validate();
-            Warmup();
+            Prepare();
             StartSubscriptions();
         }
 
@@ -44,11 +44,11 @@ namespace Core.Bootstrap
             }
         }
 
-        private void Warmup()
+        private void Prepare()
         {
-            foreach (IWarmupLifecycle warmupLifecycle in _warmupLifecycles)
+            foreach (IPreparationLifecycle preparationLifecycle in _preparationLifecycles)
             {
-                warmupLifecycle.Warmup();
+                preparationLifecycle.Prepare();
             }
         }
 

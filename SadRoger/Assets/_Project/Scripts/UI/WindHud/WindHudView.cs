@@ -12,7 +12,7 @@ namespace UI.WindHud
         : MonoBehaviour,
           IWindHudView,
           IValidatable,
-          IWarmupLifecycle
+          IPreparationLifecycle
     {
         private const string DegreesFormat = "{0}°";
         private const string PercentFormat = "{0}%";
@@ -23,8 +23,10 @@ namespace UI.WindHud
         [SerializeField] private TextMeshProUGUI _directionText;
         [SerializeField] private TextMeshProUGUI _strengthText;
         [SerializeField] private TextMeshProUGUI _relativeAngleText;
+
         [Tooltip("Arrow pointing up at zero rotation; up on screen is the ship's bow")]
         [SerializeField] private RectTransform _windArrow;
+
         [SerializeField] private Slider _directionSlider;
         [SerializeField] private Slider _baseStrengthSlider;
 
@@ -51,7 +53,7 @@ namespace UI.WindHud
             ExtendedException Missing(string fieldName) => new MissingWindHudFieldException(fieldName, gameObject.name);
         }
 
-        void IWarmupLifecycle.Warmup()
+        void IPreparationLifecycle.Prepare()
         {
             _directionSlider.onValueChanged.AddListener(OnDirectionSliderChanged);
             _baseStrengthSlider.onValueChanged.AddListener(OnBaseStrengthSliderChanged);

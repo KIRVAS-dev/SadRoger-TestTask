@@ -5,7 +5,6 @@
         "Core",
         "ExtendedExceptions",
         "UniTask",
-        "FMODUnity",
         "VContainer",
         "Unity.InputSystem",
         "Unity.Cinemachine",

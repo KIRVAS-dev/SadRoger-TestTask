@@ -6,8 +6,6 @@
         "UniTask",
         "Bootstrap",
         "Core",
-        "Infrastructure.Audio",
-        "ViewComponents",
         "UI",
         "ExtendedExceptions",
         "ContentValidation"

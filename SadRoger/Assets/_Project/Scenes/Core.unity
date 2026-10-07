@@ -617,7 +617,6 @@ GameObject:
   - component: {fileID: 659169232}
   - component: {fileID: 659169234}
   - component: {fileID: 659169238}
-  - component: {fileID: 659169239}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -767,18 +766,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!114 &659169239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659169230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ca1352ac5557bd48b6927a2621068b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ViewComponents::ViewComponents.Audio.AudioListenerCameraFollower
 --- !u!1 &663580178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,69 +1795,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6630366046847817694, guid: ad7c501afc26cdb4a97589ffaebc5abd, type: 3}
   m_PrefabInstance: {fileID: 1637451757}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1650300193
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1650300195}
-  - component: {fileID: 1650300194}
-  m_Layer: 0
-  m_Name: BGMusic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1650300194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650300193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
---- !u!4 &1650300195
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650300193}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1656056456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2197,6 +2121,7 @@ GameObject:
   - component: {fileID: 1739314979}
   - component: {fileID: 1739314978}
   - component: {fileID: 1739314977}
+  - component: {fileID: 1739314980}
   m_Layer: 0
   m_Name: LocationBoundary
   m_TagString: Untagged
@@ -2343,6 +2268,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1739314980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739314976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a32ca9e6fa929443b0ba64fc00421c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ViewComponents::ViewComponents.LocationBoundary.LocationBoundaryCenter
 --- !u!1 &1741711121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3741,7 +3678,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 626349683}
   - {fileID: 1274807957}
-  - {fileID: 1650300195}
   - {fileID: 642159710}
   - {fileID: 659169233}
   - {fileID: 917712560}
@@ -3753,5 +3689,5 @@ SceneRoots:
   - {fileID: 1249906745}
   - {fileID: 1741711123}
   - {fileID: 2069765683}
-  - {fileID: 7782420570353296271}
   - {fileID: 1739314979}
+  - {fileID: 7782420570353296271}

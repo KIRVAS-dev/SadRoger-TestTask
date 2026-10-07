@@ -5,7 +5,7 @@ namespace Core.Gameplay.Weather
 {
     public sealed class WeatherService
         : IWeatherService,
-          IWarmupLifecycle
+          IPreparationLifecycle
     {
         private readonly IWeatherSettings _settings;
         private readonly IWindStrengthMultiplier _windStrengthMultiplier;
@@ -21,7 +21,7 @@ namespace Core.Gameplay.Weather
             _model = model;
         }
 
-        void IWarmupLifecycle.Warmup()
+        void IPreparationLifecycle.Prepare()
         {
             ApplyState(_model.State.Value);
         }

@@ -17,6 +17,7 @@ namespace Core.Input.Weather
         void ISubscriptionLifecycle.Start()
         {
             ApplyState();
+
             _input.StateChanged += ApplyState;
         }
 

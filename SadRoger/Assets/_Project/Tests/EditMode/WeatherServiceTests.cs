@@ -22,9 +22,9 @@ namespace Tests.EditMode
         }
 
         [Test]
-        public void Warmup_AppliesInitialStatePreset()
+        public void Prepare_AppliesInitialStatePreset()
         {
-            ((IWarmupLifecycle)_service).Warmup();
+            ((IPreparationLifecycle)_service).Prepare();
 
             Assert.That(_model.ActivePreset.Value, Is.SameAs(_settings.Clear));
             Assert.That(_windStrengthMultiplier.Multiplier, Is.EqualTo(_settings.Clear.WindMultiplier));

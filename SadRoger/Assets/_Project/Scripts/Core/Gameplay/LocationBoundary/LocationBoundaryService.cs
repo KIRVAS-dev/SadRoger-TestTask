@@ -1,4 +1,5 @@
 using System;
+using Core.Gameplay.Navigation;
 using Core.Gameplay.Ship;
 using Core.Loop;
 
@@ -9,6 +10,7 @@ namespace Core.Gameplay.LocationBoundary
           IGameplayTickable
     {
         private readonly ILocationBoundarySettings _settings;
+        private readonly ILocationBoundaryCenterProvider _centerProvider;
         private readonly IReadOnlyShipModel _shipModel;
         private readonly LocationBoundaryModel _model;
 
@@ -18,10 +20,12 @@ namespace Core.Gameplay.LocationBoundary
 
         public LocationBoundaryService(
             ILocationBoundarySettings settings,
+            ILocationBoundaryCenterProvider centerProvider,
             IReadOnlyShipModel shipModel,
             LocationBoundaryModel model)
         {
             _settings = settings;
+            _centerProvider = centerProvider;
             _shipModel = shipModel;
             _model = model;
         }
@@ -56,8 +60,9 @@ namespace Core.Gameplay.LocationBoundary
         private bool IsShipOutside()
         {
             float radius = _settings.Radius;
+            SeaPosition center = _centerProvider.Center;
 
-            return _shipModel.Position.CurrentValue.SquaredDistanceTo(_settings.CenterX, _settings.CenterZ) > radius * radius;
+            return _shipModel.Position.CurrentValue.SquaredDistanceTo(center.X, center.Z) > radius * radius;
         }
 
         private void ReturnInside()

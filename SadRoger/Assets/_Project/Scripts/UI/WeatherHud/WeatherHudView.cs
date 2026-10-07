@@ -13,7 +13,7 @@ namespace UI.WeatherHud
         : MonoBehaviour,
           IWeatherHudView,
           IValidatable,
-          IWarmupLifecycle
+          IPreparationLifecycle
     {
         private const string PercentFormat = "{0}%";
         private const float PercentFactor = 100f;
@@ -49,7 +49,7 @@ namespace UI.WeatherHud
             ExtendedException Missing(string fieldName) => new MissingWeatherHudFieldException(fieldName, gameObject.name);
         }
 
-        void IWarmupLifecycle.Warmup()
+        void IPreparationLifecycle.Prepare()
         {
             _clearButton.onClick.AddListener(OnClearClicked);
             _rainButton.onClick.AddListener(OnRainClicked);

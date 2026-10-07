@@ -4,7 +4,6 @@ using Core.Bootstrap;
 using Core.Bootstrap.Scene;
 using Core.Loading;
 using Cysharp.Threading.Tasks;
-using Infrastructure.Audio;
 using VContainer.Unity;
 
 namespace Infrastructure.Bootstrap
@@ -14,21 +13,16 @@ namespace Infrastructure.Bootstrap
           IDisposable
     {
         private const string CoreSceneName = "Core";
-        private const float AudioLoadedProgress = 0.2f;
-        private const float SceneLoadedProgress = 1f;
 
-        private readonly IAudioLoader _audioLoader;
         private readonly ILoadingService _loadingService;
         private readonly ISceneLoader _sceneLoader;
         private readonly ScopeLifecycle _scopeLifecycle;
 
         public EntryPoint(
-            IAudioLoader audioLoader,
             ILoadingService loadingService,
             ISceneLoader sceneLoader,
             ScopeLifecycle scopeLifecycle)
         {
-            _audioLoader = audioLoader;
             _loadingService = loadingService;
             _sceneLoader = sceneLoader;
             _scopeLifecycle = scopeLifecycle;
@@ -48,22 +42,11 @@ namespace Infrastructure.Bootstrap
 
         private async UniTaskVoid LoadCoreAsync()
         {
-            await _audioLoader.LoadAsync(CancellationToken.None);
-
-            _loadingService.SetProgress(AudioLoadedProgress);
-
-            IProgress<float> sceneProgress = Progress.Create<float>(ReportSceneProgress);
+            IProgress<float> sceneProgress = Progress.Create<float>(_loadingService.SetProgress);
 
             await _sceneLoader.LoadAsync(CoreSceneName, LoadSceneMode.Additive, sceneProgress, CancellationToken.None);
 
             _sceneLoader.SetActiveScene(CoreSceneName);
-        }
-
-        private void ReportSceneProgress(float sceneProgress)
-        {
-            float progress = AudioLoadedProgress + sceneProgress * (SceneLoadedProgress - AudioLoadedProgress);
-
-            _loadingService.SetProgress(progress);
         }
     }
 }

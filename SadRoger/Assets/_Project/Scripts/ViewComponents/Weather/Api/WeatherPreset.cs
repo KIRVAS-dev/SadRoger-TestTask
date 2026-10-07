@@ -15,8 +15,10 @@ namespace ViewComponents.Weather
 
         [Range(0f, MaxIntensity)]
         [SerializeField] private float _intensity;
+
         [Tooltip("Exponential squared fog density, 0 disables fog")]
         [SerializeField] private float _fogDensity;
+
         [Tooltip("Multiplier applied to the base wind strength")]
         [SerializeField] private float _windMultiplier = 1f;
 

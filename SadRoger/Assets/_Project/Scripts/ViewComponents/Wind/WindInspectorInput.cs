@@ -14,6 +14,7 @@ namespace ViewComponents.Wind
         [Tooltip("Direction the wind blows from, degrees clockwise from world +Z")]
         [Range(0f, 360f)]
         [SerializeField] private float _direction;
+
         [Range(0f, 1f)]
         [SerializeField] private float _strength = 0.5f;
 

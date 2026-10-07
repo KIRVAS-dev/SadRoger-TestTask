@@ -1,5 +1,4 @@
 using System;
-using Core.Gameplay.GameFlow;
 using Core.Loading;
 using VContainer.Unity;
 
@@ -9,16 +8,11 @@ namespace Core.Bootstrap
         : IStartable,
           IDisposable
     {
-        private readonly IGameFlowService _gameFlowService;
         private readonly ILoadingService _loadingService;
         private readonly ScopeLifecycle _scopeLifecycle;
 
-        public CoreEntryPoint(
-            IGameFlowService gameFlowService,
-            ILoadingService loadingService,
-            ScopeLifecycle scopeLifecycle)
+        public CoreEntryPoint(ILoadingService loadingService, ScopeLifecycle scopeLifecycle)
         {
-            _gameFlowService = gameFlowService;
             _loadingService = loadingService;
             _scopeLifecycle = scopeLifecycle;
         }
@@ -26,8 +20,6 @@ namespace Core.Bootstrap
         void IStartable.Start()
         {
             _scopeLifecycle.Start();
-            _gameFlowService.PrepareGame();
-            _gameFlowService.StartGame();
             _loadingService.Complete();
         }
 

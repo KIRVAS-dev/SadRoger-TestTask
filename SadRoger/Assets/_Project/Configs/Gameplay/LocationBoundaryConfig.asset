@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0c1cfead408dd4c9fdd67d61c19b75, type: 3}
   m_Name: LocationBoundaryConfig
   m_EditorClassIdentifier: ViewComponents::ViewComponents.LocationBoundary.LocationBoundaryConfig
-  _centerX: 0
-  _centerZ: 0
   _radius: 40
   _warningDelay: 1
   _exitCountdown: 5
