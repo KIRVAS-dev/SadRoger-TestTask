@@ -1,0 +1,96 @@
+# ============================================
+# General Settings
+# ============================================
+
+# Normalize line endings to LF in the repository
+* text=auto eol=lf
+
+# Windows batch scripts — use CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# ============================================
+# Unity YAML files with Smart Merge support
+# ============================================
+
+*.unity              merge=unityyamlmerge
+*.prefab             merge=unityyamlmerge
+*.asset              merge=unityyamlmerge
+*.mat                merge=unityyamlmerge
+*.controller         merge=unityyamlmerge
+*.anim               merge=unityyamlmerge
+*.overrideController merge=unityyamlmerge
+
+# Unity .meta files — keep as text for versioning
+*.meta          text
+
+# ============================================
+# Source files and configuration — treat as text
+# ============================================
+
+*.cs            text
+*.shader        text
+*.compute       text
+*.cginc         text
+*.hlsl          text
+*.glsl          text
+*.json          text
+*.xml           text
+*.txt           text
+*.md            text
+*.asmdef        text
+*.asmref        text
+*.yml           text
+*.yaml          text
+*.rsp           text
+
+# ============================================
+# Binary files — disable diff and merge
+# ============================================
+
+# Images
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.tga           binary
+*.exr           binary
+*/Assets/_Project/**/*.png filter=lfs diff=lfs merge=lfs -text
+*/Assets/_Project/**/*.psd filter=lfs diff=lfs merge=lfs -text
+
+# 3D models and animation
+*.fbx           binary
+*.obj           binary
+*.blend         binary
+
+# Audio
+*.wav           binary
+*.mp3           binary
+*.ogg           binary
+
+# Fonts
+*.ttf           binary
+*.otf           binary
+
+# Unity packages
+*.unitypackage  binary
+
+# FMOD
+*/Assets/Plugins/FMOD/**/*.bundle text eol=lf
+*/Assets/Plugins/FMOD/**/Info.plist text eol=lf
+
+# ============================================
+# UnityYAMLMerge setup (local git config)
+# ============================================
+# .gitattributes only names the driver. Each clone must set it locally
+# (replace the Editor path with your Unity 6000.5.0f1 install):
+#
+# git config merge.unityyamlmerge.name "Unity SmartMerge"
+# git config merge.unityyamlmerge.recursive binary
+#
+# Windows:
+# git config merge.unityyamlmerge.driver "\"<UnityEditor>/Editor/Data/Tools/UnityYAMLMerge.exe\" merge -h -p --force --fallback none %O %B %A %A"
+#
+# macOS (Hub):
+# git config merge.unityyamlmerge.driver "'/Applications/Unity/Hub/Editor/6000.5.0f1/Unity.app/Contents/Tools/UnityYAMLMerge' merge -h -p --force --fallback none %O %B %A %A"
+#
+# This machine: E:/Unity/Editor/6000.5.0f1/Editor/Data/Tools/UnityYAMLMerge.exe

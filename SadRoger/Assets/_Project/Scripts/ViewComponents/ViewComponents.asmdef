@@ -1,0 +1,27 @@
+{
+    "name": "ViewComponents",
+    "rootNamespace": "ViewComponents",
+    "references": [
+        "Core",
+        "ExtendedExceptions",
+        "UniTask",
+        "FMODUnity",
+        "VContainer",
+        "Unity.InputSystem",
+        "Unity.Cinemachine",
+        "DOTween.Modules",
+        "ContentValidation"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "R3.dll",
+        "DOTween.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

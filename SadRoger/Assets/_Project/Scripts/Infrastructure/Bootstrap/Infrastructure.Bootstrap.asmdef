@@ -1,0 +1,24 @@
+{
+    "name": "Infrastructure.Bootstrap",
+    "rootNamespace": "Infrastructure.Bootstrap",
+    "references": [
+        "VContainer",
+        "UniTask",
+        "Bootstrap",
+        "Core",
+        "Infrastructure.Audio",
+        "ViewComponents",
+        "UI",
+        "ExtendedExceptions",
+        "ContentValidation"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

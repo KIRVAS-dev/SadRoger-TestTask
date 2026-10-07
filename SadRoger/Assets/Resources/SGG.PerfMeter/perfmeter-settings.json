@@ -1,0 +1,637 @@
+{
+    "schemaVersion": 1,
+    "enabled": false,
+    "autoStart": true,
+    "collectionMode": "Stopped",
+    "overlayVisible": true,
+    "overlayCorner": "TopRight",
+    "targetFps": 60,
+    "activePreset": "Custom",
+    "activeOverlayPresetId": "default",
+    "presets": [
+        {
+            "id": "Minimal",
+            "overlayVisible": true,
+            "targetFps": 60,
+            "modules": [
+                "Fps",
+                "Warnings"
+            ]
+        },
+        {
+            "id": "Timing",
+            "overlayVisible": true,
+            "targetFps": 60,
+            "modules": [
+                "Fps",
+                "Timing",
+                "Graphs",
+                "Warnings"
+            ]
+        },
+        {
+            "id": "Rendering",
+            "overlayVisible": true,
+            "targetFps": 60,
+            "modules": [
+                "Fps",
+                "Rendering",
+                "SrpBatcher",
+                "Brg",
+                "Uploads",
+                "Warnings"
+            ]
+        },
+        {
+            "id": "Memory",
+            "overlayVisible": true,
+            "targetFps": 60,
+            "modules": [
+                "Fps",
+                "Memory",
+                "Gc",
+                "GpuMemory",
+                "Warnings"
+            ]
+        },
+        {
+            "id": "Overdraw",
+            "overlayVisible": true,
+            "targetFps": 60,
+            "modules": [
+                "Fps",
+                "Overdraw",
+                "Heatmap",
+                "Warnings"
+            ]
+        },
+        {
+            "id": "FullDiagnostics",
+            "overlayVisible": true,
+            "targetFps": 60,
+            "modules": [
+                "Fps",
+                "Timing",
+                "Graphs",
+                "Rendering",
+                "SrpBatcher",
+                "Brg",
+                "Uploads",
+                "Memory",
+                "Gc",
+                "GpuMemory",
+                "Overdraw",
+                "Heatmap",
+                "Warnings",
+                "CustomMetrics",
+                "CpuCoreBars"
+            ]
+        },
+        {
+            "id": "AgentDebug",
+            "overlayVisible": true,
+            "targetFps": 60,
+            "modules": [
+                "Fps",
+                "Timing",
+                "Rendering",
+                "SrpBatcher",
+                "Brg",
+                "Uploads",
+                "Memory",
+                "Overdraw",
+                "Heatmap",
+                "Warnings",
+                "CustomMetrics"
+            ]
+        },
+        {
+            "id": "Custom",
+            "overlayVisible": true,
+            "targetFps": 60,
+            "modules": [
+                "Fps",
+                "Timing",
+                "Graphs",
+                "Rendering",
+                "SrpBatcher",
+                "Brg",
+                "Uploads",
+                "Memory",
+                "Gc",
+                "GpuMemory",
+                "Overdraw",
+                "Heatmap",
+                "Warnings",
+                "CustomMetrics",
+                "CpuCoreBars"
+            ]
+        }
+    ],
+    "overlayPresets": [
+        {
+            "schema": "sgg-perfmeter.overlay-preset",
+            "version": 1,
+            "id": "classic-cards",
+            "displayName": "Classic Cards",
+            "description": "Main timing and diagnostic cards without graphs.",
+            "tags": [],
+            "style": {
+                "anchor": "TopRight",
+                "layout": "Classic",
+                "theme": "ClassicDark",
+                "font": "Manrope",
+                "scale": 1.0,
+                "opacity": 0.8399999737739563,
+                "maxWidth": 520,
+                "gap": 4
+            },
+            "widgets": [
+                {
+                    "id": "fps.summary-card",
+                    "enabled": true,
+                    "order": 10,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.cpu-card",
+                    "enabled": true,
+                    "order": 20,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.gpu-card",
+                    "enabled": true,
+                    "order": 30,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.frame-spikes-card",
+                    "enabled": true,
+                    "order": 40,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "rendering.summary-card",
+                    "enabled": true,
+                    "order": 50,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "memory.summary-card",
+                    "enabled": true,
+                    "order": 60,
+                    "variant": "",
+                    "height": 0
+                }
+            ]
+        },
+        {
+            "schema": "sgg-perfmeter.overlay-preset",
+            "version": 1,
+            "id": "compact-timing",
+            "displayName": "Compact Timing",
+            "description": "Compact overlay with FPS, CPU/GPU timing cards and budget bars.",
+            "tags": [],
+            "style": {
+                "anchor": "TopRight",
+                "layout": "CompactCards",
+                "theme": "ClassicDark",
+                "font": "Manrope",
+                "scale": 1.0,
+                "opacity": 0.8399999737739563,
+                "maxWidth": 420,
+                "gap": 4
+            },
+            "widgets": [
+                {
+                    "id": "fps.summary-card",
+                    "enabled": true,
+                    "order": 10,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.cpu-card",
+                    "enabled": true,
+                    "order": 20,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.gpu-card",
+                    "enabled": true,
+                    "order": 30,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.cpu-budget-bar",
+                    "enabled": true,
+                    "order": 40,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.gpu-budget-bar",
+                    "enabled": true,
+                    "order": 50,
+                    "variant": "",
+                    "height": 0
+                }
+            ]
+        },
+        {
+            "schema": "sgg-perfmeter.overlay-preset",
+            "version": 1,
+            "id": "default",
+            "displayName": "Default",
+            "description": "Default PerfMeter diagnostics overlay for zero-code setup with compact metric bars.",
+            "tags": [],
+            "style": {
+                "anchor": "TopRight",
+                "layout": "MetricBars",
+                "theme": "ClassicDark",
+                "font": "Manrope",
+                "scale": 1.0,
+                "opacity": 0.8399999737739563,
+                "maxWidth": 720,
+                "gap": 4
+            },
+            "widgets": [
+                {
+                    "id": "fps.summary-card",
+                    "enabled": true,
+                    "order": 10,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.cpu-card",
+                    "enabled": true,
+                    "order": 20,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.gpu-card",
+                    "enabled": true,
+                    "order": 30,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.frame-spikes-card",
+                    "enabled": true,
+                    "order": 40,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.cpu-budget-bar",
+                    "enabled": true,
+                    "order": 50,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.gpu-budget-bar",
+                    "enabled": true,
+                    "order": 60,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "graphs.cpu-timing",
+                    "enabled": true,
+                    "order": 70,
+                    "variant": "",
+                    "height": 48
+                },
+                {
+                    "id": "graphs.gpu-timing",
+                    "enabled": true,
+                    "order": 80,
+                    "variant": "",
+                    "height": 48
+                },
+                {
+                    "id": "cpu.cores-bars",
+                    "enabled": true,
+                    "order": 90,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "cpu.cores-graphs",
+                    "enabled": false,
+                    "order": 100,
+                    "variant": "",
+                    "height": 48
+                },
+                {
+                    "id": "overdraw.card",
+                    "enabled": true,
+                    "order": 110,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "rendering.summary-card",
+                    "enabled": true,
+                    "order": 120,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "memory.summary-card",
+                    "enabled": true,
+                    "order": 130,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "batching.summary-card",
+                    "enabled": true,
+                    "order": 140,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "uploads.summary-card",
+                    "enabled": true,
+                    "order": 150,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "custom-metrics.panel",
+                    "enabled": true,
+                    "order": 160,
+                    "variant": "",
+                    "height": 0
+                }
+            ]
+        },
+        {
+            "schema": "sgg-perfmeter.overlay-preset",
+            "version": 1,
+            "id": "fps-only",
+            "displayName": "FPS Only",
+            "description": "Super-minimal one-line overlay with current FPS, average FPS, 1% low, 0.1% low, and render-thread time.",
+            "tags": [],
+            "style": {
+                "anchor": "TopRight",
+                "layout": "FpsOnly",
+                "theme": "ClassicDark",
+                "font": "Manrope",
+                "scale": 1.0,
+                "opacity": 0.8399999737739563,
+                "maxWidth": 360,
+                "gap": 4
+            },
+            "widgets": [
+                {
+                    "id": "fps.summary-card",
+                    "enabled": true,
+                    "order": 10,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.cpu-card",
+                    "enabled": true,
+                    "order": 20,
+                    "variant": "",
+                    "height": 0
+                }
+            ]
+        },
+        {
+            "schema": "sgg-perfmeter.overlay-preset",
+            "version": 1,
+            "id": "full-diagnostics",
+            "displayName": "Full Diagnostics",
+            "description": "Wide diagnostic overlay with major high-level PerfMeter widgets enabled.",
+            "tags": [],
+            "style": {
+                "anchor": "TopRight",
+                "layout": "DiagnosticsWide",
+                "theme": "ClassicDark",
+                "font": "Manrope",
+                "scale": 1.0,
+                "opacity": 0.8399999737739563,
+                "maxWidth": 720,
+                "gap": 4
+            },
+            "widgets": [
+                {
+                    "id": "fps.summary-card",
+                    "enabled": true,
+                    "order": 10,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.cpu-card",
+                    "enabled": true,
+                    "order": 20,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.gpu-card",
+                    "enabled": true,
+                    "order": 30,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.frame-spikes-card",
+                    "enabled": true,
+                    "order": 40,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.cpu-budget-bar",
+                    "enabled": true,
+                    "order": 50,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.gpu-budget-bar",
+                    "enabled": true,
+                    "order": 60,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "graphs.cpu-timing",
+                    "enabled": true,
+                    "order": 70,
+                    "variant": "",
+                    "height": 48
+                },
+                {
+                    "id": "graphs.gpu-timing",
+                    "enabled": true,
+                    "order": 80,
+                    "variant": "",
+                    "height": 48
+                },
+                {
+                    "id": "cpu.cores-bars",
+                    "enabled": true,
+                    "order": 90,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "cpu.cores-graphs",
+                    "enabled": false,
+                    "order": 100,
+                    "variant": "",
+                    "height": 48
+                },
+                {
+                    "id": "overdraw.card",
+                    "enabled": true,
+                    "order": 110,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "rendering.summary-card",
+                    "enabled": true,
+                    "order": 120,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "memory.summary-card",
+                    "enabled": true,
+                    "order": 130,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "batching.summary-card",
+                    "enabled": true,
+                    "order": 140,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "uploads.summary-card",
+                    "enabled": true,
+                    "order": 150,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "custom-metrics.panel",
+                    "enabled": true,
+                    "order": 160,
+                    "variant": "",
+                    "height": 0
+                }
+            ]
+        },
+        {
+            "schema": "sgg-perfmeter.overlay-preset",
+            "version": 1,
+            "id": "graphs",
+            "displayName": "Graphs",
+            "description": "Timing-focused overlay with CPU and GPU history graphs.",
+            "tags": [],
+            "style": {
+                "anchor": "TopRight",
+                "layout": "Graphs",
+                "theme": "ClassicDark",
+                "font": "Manrope",
+                "scale": 1.0,
+                "opacity": 0.8399999737739563,
+                "maxWidth": 620,
+                "gap": 4
+            },
+            "widgets": [
+                {
+                    "id": "fps.summary-card",
+                    "enabled": true,
+                    "order": 10,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.cpu-card",
+                    "enabled": true,
+                    "order": 20,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "timing.gpu-card",
+                    "enabled": true,
+                    "order": 30,
+                    "variant": "",
+                    "height": 0
+                },
+                {
+                    "id": "graphs.cpu-timing",
+                    "enabled": true,
+                    "order": 40,
+                    "variant": "",
+                    "height": 48
+                },
+                {
+                    "id": "graphs.gpu-timing",
+                    "enabled": true,
+                    "order": 50,
+                    "variant": "",
+                    "height": 48
+                }
+            ]
+        }
+    ],
+    "overlay": {
+        "theme": "ClassicDark",
+        "layout": "MetricBars",
+        "fontFamily": "Manrope",
+        "scale": 1.0,
+        "opacity": 0.8399999737739563,
+        "fontSize": 12.0,
+        "refreshIntervalSeconds": 0.25,
+        "graphHistoryLength": 120
+    },
+    "ruleDefaults": {
+        "editorWarningCooldownSeconds": 8.0,
+        "structuredLogCooldownSeconds": 2.0,
+        "callbackCooldownSeconds": 0.5,
+        "overdrawRatioThreshold": 3.0,
+        "timingConsecutiveFrames": 5,
+        "fpsConsecutiveFrames": 60,
+        "gpuTimingUnavailableConsecutiveFrames": 120,
+        "overdrawConsecutiveFrames": 3,
+        "editorWarningsEnabled": true
+    },
+    "session": {
+        "warmupFrames": 0,
+        "warmupSeconds": 0.0,
+        "sampleIntervalSeconds": 0.25,
+        "maxSamples": 4096,
+        "resetOnSceneLoad": false,
+        "sceneLoadIgnoreFrames": 0,
+        "sceneLoadIgnoreSeconds": 0.0
+    },
+    "overdraw": {
+        "defaultFrameCount": 60,
+        "maxFrameCount": 600
+    }
+}

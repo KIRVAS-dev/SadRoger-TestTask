@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MasterTagFolder" id="{f1a19585-f2c8-4d62-8187-708fc94a352a}">
+		<property name="name">
+			<value>Master</value>
+		</property>
+		<relationship name="items">
+			<destination>{e6a09186-d05d-456c-b5b5-844bce6447fe}</destination>
+			<destination>{5a47ad4e-3da3-49d6-92ab-c0a2a6537feb}</destination>
+			<destination>{e0afcff9-d84c-4ca6-8771-eb126a0083fc}</destination>
+			<destination>{aae550c8-039d-4f79-99ad-81ee24a9a73d}</destination>
+			<destination>{90009183-a607-47ff-81f4-3e739812627e}</destination>
+			<destination>{936b2831-3bd0-44f4-a106-a1a9aaae0ad2}</destination>
+			<destination>{da5c2a4e-d076-4cce-a596-521e8a7589e7}</destination>
+			<destination>{b2812ad1-3a56-4bea-ba56-a46deb05cf3e}</destination>
+			<destination>{23791adc-b88b-4569-9264-cf343ed46884}</destination>
+		</relationship>
+	</object>
+	<object class="Tag" id="{e6a09186-d05d-456c-b5b5-844bce6447fe}">
+		<property name="name">
+			<value>Ambience</value>
+		</property>
+	</object>
+	<object class="Tag" id="{5a47ad4e-3da3-49d6-92ab-c0a2a6537feb}">
+		<property name="name">
+			<value>UI</value>
+		</property>
+	</object>
+	<object class="Tag" id="{e0afcff9-d84c-4ca6-8771-eb126a0083fc}">
+		<property name="name">
+			<value>Music</value>
+		</property>
+	</object>
+	<object class="Tag" id="{aae550c8-039d-4f79-99ad-81ee24a9a73d}">
+		<property name="name">
+			<value>sfx</value>
+		</property>
+	</object>
+	<object class="Tag" id="{90009183-a607-47ff-81f4-3e739812627e}">
+		<property name="name">
+			<value>hit</value>
+		</property>
+	</object>
+	<object class="Tag" id="{936b2831-3bd0-44f4-a106-a1a9aaae0ad2}">
+		<property name="name">
+			<value>chest</value>
+		</property>
+	</object>
+	<object class="Tag" id="{da5c2a4e-d076-4cce-a596-521e8a7589e7}">
+		<property name="name">
+			<value>char</value>
+		</property>
+	</object>
+	<object class="Tag" id="{b2812ad1-3a56-4bea-ba56-a46deb05cf3e}">
+		<property name="name">
+			<value>character</value>
+		</property>
+	</object>
+	<object class="Tag" id="{23791adc-b88b-4569-9264-cf343ed46884}">
+		<property name="name">
+			<value>charac</value>
+		</property>
+	</object>
+</objects>

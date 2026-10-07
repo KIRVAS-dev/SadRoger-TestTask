@@ -1,0 +1,7 @@
+{
+  "name": "com.kirvas.entrypoint-scene-autoloader",
+  "version": "1.0.0",
+  "unity": "6000.3",
+  "displayName": "Entry Point Scene Autoloader",
+  "description": "Automatically sets play mode start scene to bootstrap scene."
+}

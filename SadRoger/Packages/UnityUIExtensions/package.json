@@ -1,0 +1,7 @@
+{
+  "name": "com.unity.uiextensions",
+  "version": "2.3.2",
+  "unity": "6000.3",
+  "displayName": "Unity UI Extensions",
+  "description": "Local package: Unity UI Extensions editor utilities (uGUITools)."
+}

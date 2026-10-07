@@ -1,0 +1,23 @@
+{
+    "name": "Bootstrap",
+    "rootNamespace": "Core.Bootstrap",
+    "references": [
+        "ExtendedExceptions",
+        "VContainer",
+        "UniTask",
+        "Core",
+        "Input",
+        "UI",
+        "ViewComponents",
+        "ContentValidation"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

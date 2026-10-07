@@ -1,0 +1,55 @@
+{
+    "schema": "sgg-perfmeter.overlay-preset",
+    "version": 1,
+    "id": "graphs",
+    "displayName": "Graphs",
+    "description": "Timing-focused overlay with CPU and GPU history graphs.",
+    "tags": [],
+    "style": {
+        "anchor": "TopRight",
+        "layout": "Graphs",
+        "theme": "ClassicDark",
+        "font": "Manrope",
+        "scale": 1.0,
+        "opacity": 0.8399999737739563,
+        "maxWidth": 620,
+        "gap": 4
+    },
+    "widgets": [
+        {
+            "id": "fps.summary-card",
+            "enabled": true,
+            "order": 10,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "timing.cpu-card",
+            "enabled": true,
+            "order": 20,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "timing.gpu-card",
+            "enabled": true,
+            "order": 30,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "graphs.cpu-timing",
+            "enabled": true,
+            "order": 40,
+            "variant": "",
+            "height": 48
+        },
+        {
+            "id": "graphs.gpu-timing",
+            "enabled": true,
+            "order": 50,
+            "variant": "",
+            "height": 48
+        }
+    ]
+}

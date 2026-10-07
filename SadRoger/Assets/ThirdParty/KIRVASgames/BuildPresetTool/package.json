@@ -1,0 +1,24 @@
+{
+  "name": "com.kirvasgames.buildpresettool",
+  "version": "1.3.0",
+  "displayName": "Build Preset Manager",
+  "description": "A powerful Unity Editor tool that allows you to save, manage, and quickly apply build configuration presets for different platforms and scenarios (Development, Production, Custom).",
+  "unity": "6000.0",
+  "unityRelease": "0f1",
+  "keywords": [
+    "build",
+    "preset",
+    "automation",
+    "workflow",
+    "editor",
+    "tool",
+    "settings",
+    "configuration"
+  ],
+  "author": {
+    "name": "KIRVAS games",
+    "email": "hello@kirvas-games.ru"
+  },
+  "dependencies": {},
+  "samples": []
+}

@@ -1,0 +1,7 @@
+{
+  "name": "com.kirvas.interface-ref",
+  "version": "1.0.0",
+  "unity": "6000.3",
+  "displayName": "Interface Ref",
+  "description": "Serializable UnityEngine.Object reference constrained to a C# interface type, with editor property drawer."
+}

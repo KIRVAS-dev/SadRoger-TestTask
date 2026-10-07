@@ -1,0 +1,132 @@
+{
+    "schema": "sgg-perfmeter.overlay-preset",
+    "version": 1,
+    "id": "full-diagnostics",
+    "displayName": "Full Diagnostics",
+    "description": "Wide diagnostic overlay with major high-level PerfMeter widgets enabled.",
+    "tags": [],
+    "style": {
+        "anchor": "TopRight",
+        "layout": "DiagnosticsWide",
+        "theme": "ClassicDark",
+        "font": "Manrope",
+        "scale": 1.0,
+        "opacity": 0.8399999737739563,
+        "maxWidth": 720,
+        "gap": 4
+    },
+    "widgets": [
+        {
+            "id": "fps.summary-card",
+            "enabled": true,
+            "order": 10,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "timing.cpu-card",
+            "enabled": true,
+            "order": 20,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "timing.gpu-card",
+            "enabled": true,
+            "order": 30,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "timing.frame-spikes-card",
+            "enabled": true,
+            "order": 40,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "timing.cpu-budget-bar",
+            "enabled": true,
+            "order": 50,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "timing.gpu-budget-bar",
+            "enabled": true,
+            "order": 60,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "graphs.cpu-timing",
+            "enabled": true,
+            "order": 70,
+            "variant": "",
+            "height": 48
+        },
+        {
+            "id": "graphs.gpu-timing",
+            "enabled": true,
+            "order": 80,
+            "variant": "",
+            "height": 48
+        },
+        {
+            "id": "cpu.cores-bars",
+            "enabled": true,
+            "order": 90,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "cpu.cores-graphs",
+            "enabled": false,
+            "order": 100,
+            "variant": "",
+            "height": 48
+        },
+        {
+            "id": "overdraw.card",
+            "enabled": true,
+            "order": 110,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "rendering.summary-card",
+            "enabled": true,
+            "order": 120,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "memory.summary-card",
+            "enabled": true,
+            "order": 130,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "batching.summary-card",
+            "enabled": true,
+            "order": 140,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "uploads.summary-card",
+            "enabled": true,
+            "order": 150,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "custom-metrics.panel",
+            "enabled": true,
+            "order": 160,
+            "variant": "",
+            "height": 0
+        }
+    ]
+}

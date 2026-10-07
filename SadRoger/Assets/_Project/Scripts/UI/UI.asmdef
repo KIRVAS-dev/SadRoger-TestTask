@@ -1,0 +1,25 @@
+{
+    "name": "UI",
+    "rootNamespace": "UI",
+    "references": [
+        "ExtendedExceptions",
+        "Core",
+        "DOTween.Modules",
+        "Unity.TextMeshPro",
+        "Unity.ugui",
+        "ContentValidation",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "DOTween.dll",
+        "R3.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

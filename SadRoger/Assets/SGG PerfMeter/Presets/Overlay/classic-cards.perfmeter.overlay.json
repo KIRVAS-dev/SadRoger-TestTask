@@ -1,0 +1,62 @@
+{
+    "schema": "sgg-perfmeter.overlay-preset",
+    "version": 1,
+    "id": "classic-cards",
+    "displayName": "Classic Cards",
+    "description": "Main timing and diagnostic cards without graphs.",
+    "tags": [],
+    "style": {
+        "anchor": "TopRight",
+        "layout": "Classic",
+        "theme": "ClassicDark",
+        "font": "Manrope",
+        "scale": 1.0,
+        "opacity": 0.8399999737739563,
+        "maxWidth": 520,
+        "gap": 4
+    },
+    "widgets": [
+        {
+            "id": "fps.summary-card",
+            "enabled": true,
+            "order": 10,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "timing.cpu-card",
+            "enabled": true,
+            "order": 20,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "timing.gpu-card",
+            "enabled": true,
+            "order": 30,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "timing.frame-spikes-card",
+            "enabled": true,
+            "order": 40,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "rendering.summary-card",
+            "enabled": true,
+            "order": 50,
+            "variant": "",
+            "height": 0
+        },
+        {
+            "id": "memory.summary-card",
+            "enabled": true,
+            "order": 60,
+            "variant": "",
+            "height": 0
+        }
+    ]
+}
