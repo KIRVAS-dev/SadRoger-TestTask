@@ -1,17 +1,21 @@
 using ContentValidation;
 using Core.Gameplay.GameFlow;
 using Core.Gameplay.Ship;
+using Core.Gameplay.Wind;
 using Core.Input;
 using Core.Input.Ship;
+using Core.Input.Wind;
 using Core.Lifecycle;
 using Core.Loop;
 using Infrastructure.ExtendedExceptions;
 using Input;
+using UI.WindHud;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using ViewComponents.Audio;
 using ViewComponents.Ship;
+using ViewComponents.Wind;
 
 namespace Core.Bootstrap
 {
@@ -25,6 +29,7 @@ namespace Core.Bootstrap
             RegisterGameFlow(builder);
             RegisterAudioListenerFollow(builder);
             RegisterShip(builder);
+            RegisterWind(builder);
         }
 
         private static void RegisterEntryPoint(IContainerBuilder builder)
@@ -45,6 +50,18 @@ namespace Core.Bootstrap
         private static void RegisterAudioListenerFollow(IContainerBuilder builder)
         {
             builder.RegisterComponentInHierarchy<AudioListenerCameraFollower>();
+        }
+
+        private static void RegisterWind(IContainerBuilder builder)
+        {
+            builder.RegisterComponentInHierarchy<WindInspectorInput>().As<IWindInput>().As<IInputTickable>();
+            builder.Register<WindModel>(Lifetime.Singleton).AsSelf().As<IReadOnlyWindModel>();
+            builder.Register<WindService>(Lifetime.Singleton).As<IWindService>().As<IWindStrengthMultiplier>();
+            builder.Register<RelativeWindAngle>(Lifetime.Singleton).As<IRelativeWindAngle>();
+            builder.Register<WindInputHandler>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
+
+            builder.RegisterComponentInHierarchy<WindHudView>().As<IWindHudView>().As<IValidatable>();
+            builder.Register<WindHudPresenter>(Lifetime.Singleton).As<ISubscriptionLifecycle>();
         }
 
         private void RegisterShip(IContainerBuilder builder)
