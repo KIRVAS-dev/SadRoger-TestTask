@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>SadRoger</title>
+    <style>
+        @font-face {
+            font-family: "LiberationSans";
+            src: url("TemplateData/LiberationSans.ttf") format("truetype");
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            overflow: hidden;
+            overscroll-behavior: none;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Fills the whole window on any aspect ratio. */
+        #game {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            container-type: size;
+        }
+
+        #unity-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            background: #231F20;
+        }
+
+        /* Mirrors the LoadingScreen prefab: 1080 x 1920 reference, fitted inside the window (CanvasScaler Expand). */
+        #overlay {
+            --unit: min(100cqw / 1080, 100cqh / 1920);
+            --text-color: #FFFFFF;
+            position: absolute;
+            inset: 0;
+            background: #231F20;
+            font-family: "LiberationSans", Arial, sans-serif;
+            transition: opacity 0.35s ease-out;
+        }
+
+        #overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #play-button {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: calc(var(--unit) * 36) calc(var(--unit) * 96);
+            font-family: inherit;
+            font-size: calc(var(--unit) * 64);
+            color: var(--text-color);
+            background: transparent;
+            border: calc(var(--unit) * 6) solid var(--text-color);
+            border-radius: calc(var(--unit) * 28);
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        #play-button:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        #play-button:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+
+        #loading {
+            display: none;
+        }
+
+        #loading > * {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #logo {
+            top: calc(50% - var(--unit) * 34);
+            width: calc(var(--unit) * 154);
+            height: calc(var(--unit) * 130);
+        }
+
+        #progress-bar {
+            top: calc(50% + var(--unit) * 50);
+            width: calc(var(--unit) * 141);
+            height: calc(var(--unit) * 18);
+            background: url("TemplateData/ProgressBar_Empty.png") center / 100% 100% no-repeat;
+        }
+
+        #progress-fill {
+            width: 0%;
+            height: 100%;
+            background: url("TemplateData/ProgressBar_Full.png") left center / calc(var(--unit) * 141) 100% no-repeat;
+        }
+
+        #progress-text {
+            top: calc(50% + var(--unit) * 84);
+            font-size: calc(var(--unit) * 24);
+            color: var(--text-color);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div id="game">
+    <canvas id="unity-canvas" width=360 height=640 tabindex="-1"></canvas>
+    <div id="overlay">
+        <button id="play-button"></button>
+        <div id="loading">
+            <img id="logo" src="TemplateData/UnityLogo.png" alt="">
+            <div id="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
+            <div id="progress-text">0%</div>
+        </div>
+    </div>
+</div>
+
+<script src="Build/42e2579cc86b0d5a7e69478174160406.loader.js"></script>
+<script>
+    var FadeOutDuration = 350;
+    var PlayLabels = { ru: "ИГРАТЬ", en: "PLAY" };
+
+    var canvas = document.querySelector("#unity-canvas");
+    var overlay = document.querySelector("#overlay");
+    var playButton = document.querySelector("#play-button");
+    var loading = document.querySelector("#loading");
+    var progressFill = document.querySelector("#progress-fill");
+    var progressText = document.querySelector("#progress-text");
+    var isStarted = false;
+
+    var language = (navigator.language || "en").slice(0, 2).toLowerCase();
+    document.documentElement.lang = PlayLabels[language] ? language : "en";
+    playButton.textContent = PlayLabels[language] || PlayLabels.en;
+
+    // The game starts on click so the user gesture unlocks audio (WebAudio).
+    playButton.addEventListener("click", function () {
+        playButton.style.display = "none";
+        loading.style.display = "block";
+
+        if (window.matchMedia("(pointer: coarse)").matches) {
+            enterFullscreen();
+        }
+
+        createUnityInstance(canvas, {
+            arguments: [],
+            dataUrl: "Build/131cd19c4dc6c725e49d951154b29c3c.data.unityweb",
+            frameworkUrl: "Build/2754e7a1e218314cc8c4043d96223eab.framework.js.unityweb",
+            codeUrl: "Build/22a92f1a4288c436b5876ad959f9749a.wasm.unityweb",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "KIRVAS",
+            productName: "SadRoger",
+            productVersion: "0.1.0",
+        }, function (value) {
+            var percent = Math.round(100 * value);
+            progressFill.style.width = percent + "%";
+            progressText.textContent = percent + "%";
+        }).then(function () {
+            isStarted = true;
+            canvas.focus();
+            hideOverlay();
+        }).catch(function (message) {
+            alert(message);
+        });
+    });
+
+    function hideOverlay() {
+        overlay.classList.add("hidden");
+
+        setTimeout(function () {
+            overlay.remove();
+        }, FadeOutDuration);
+    }
+
+    // Orientation stays free: the game fills the window in portrait and landscape.
+    function enterFullscreen() {
+        var root = document.documentElement;
+
+        if (!root.requestFullscreen) {
+            return;
+        }
+
+        root.requestFullscreen().catch(function () {
+        });
+    }
+
+    // Keeps the drag alive when the cursor leaves the canvas.
+    canvas.addEventListener("pointerdown", function (event) {
+        canvas.setPointerCapture(event.pointerId);
+    });
+</script>
+</body>
+</html>
