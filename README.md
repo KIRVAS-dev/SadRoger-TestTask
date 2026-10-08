@@ -1,5 +1,7 @@
 # SadRoger — тестовое задание «Ветер и выход за границу морской локации»
 
+[Играть в браузере](https://kirvas-dev.github.io/SadRoger-TestTask/)
+
 Unity 6.5 (6000.5.0f1), URP. Стек: VContainer (DI), R3 (реактивные модели), UniTask, Cinemachine, TextMesh Pro.
 
 ## Запуск
